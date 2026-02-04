@@ -1,0 +1,16 @@
+{
+  "frame_accuracy": 0.7065766779152606,
+  "video_accuracy": 0.736,
+  "roc_auc_frame": 0.7549064734652955,
+  "ap_frame": 0.7480676715054443,
+  "confusion_matrix_frame": [
+    [
+      20325,
+      10950
+    ],
+    [
+      8614,
+      26786
+    ]
+  ]
+}
