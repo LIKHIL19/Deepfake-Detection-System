@@ -1,103 +1,114 @@
-Deepfake Detection using ResNet-18 (Face-Level Classification)
-Overview
+# 🎭 Deepfake Detection using ResNet-18
 
-This project is a complete deep learning–based deepfake detection system built using ResNet-18 and PyTorch.
+A complete deep learning pipeline to detect whether an image or video is **REAL** or **FAKE** using face-level analysis and a ResNet-18 classifier.
 
-The system detects whether a given image or video is REAL (authentic) or FAKE (manipulated) by analyzing facial features extracted from video frames.
+---
 
-Unlike traditional machine learning projects, this system performs:
+## 🚀 Project Overview
 
-Video processing
+This project builds an end-to-end deepfake detection system:
 
-Frame extraction
+- 🎥 Extract frames from videos  
+- 😀 Detect & crop faces  
+- 🧠 Train a deep CNN (ResNet-18)  
+- 📊 Evaluate with multiple performance metrics  
+- 🌐 Deploy with Streamlit UI  
 
-Face detection & cropping
+The model performs both **frame-level** and **video-level** classification.
 
-Deep CNN-based feature extraction
+---
 
-Binary classification
+## 🛠 Tech Stack
 
-Frame-level & Video-level evaluation
+- **Python**
+- **PyTorch**
+- **ResNet-18 (Transfer Learning)**
+- **OpenCV**
+- **Pillow**
+- **Pandas**
+- **Streamlit**
+- **Matplotlib**
 
-Web-based inference interface (Streamlit)
+**GPU Used:** NVIDIA RTX 3050 (4GB)
 
-The project was built step-by-step from raw video data to final deployment-ready prediction UI.
+---
 
-Project Objective
+## 📂 Project Structure
 
-To build a robust deepfake detection system that:
+```text
+Deepfake-project/
+│
+├── scripts/
+│   ├── extract_frames.py
+│   ├── precrop_faces_v2.py
+│   ├── train_resnet18.py
+│   ├── eval_test.py
+│   ├── predict.py
+│
+├── splits/
+│   ├── train.csv
+│   ├── val.csv
+│   ├── test.csv
+│
+├── preprocessed/
+│   ├── faces/
+│   ├── videos/
+│
+├── best_model.pth
+├── checkpoint.pth
+└── app.py
+```
 
-Works on both images and videos
+---
 
-Uses face-level analysis for better accuracy
+## 🔄 Workflow
 
-Achieves strong generalization performance
+### 1️⃣ Frame Extraction
+Videos are converted into frames using OpenCV.
 
-Provides clear evaluation metrics
+### 2️⃣ Face Cropping
+Each frame is processed to detect and crop only the facial region.
 
-Includes a usable frontend interface
+### 3️⃣ Dataset Preparation
+CSV files define:
+- Image path  
+- Label (0 = REAL, 1 = FAKE)
 
-Key Features
-Data Processing Pipeline
+### 4️⃣ Model Training
+- Pretrained **ResNet-18**
+- Final classification head (binary)
+- Weighted sampling for class balance
+- Cosine learning rate schedule
+- Best model saved automatically
 
-Video → Frame extraction
+### 5️⃣ Evaluation
+Model evaluated on unseen test data using:
+- Accuracy
+- Precision
+- Recall
+- F1 Score
+- ROC-AUC
+- PR-AUC
+- Confusion Matrix
 
-Face cropping using OpenCV
+### 6️⃣ Inference
+- Predict on single image
+- Predict on full video (frame averaging)
+- Streamlit UI for drag-and-drop testing
 
-Dataset verification and validation
+---
 
-Train / Validation / Test split generation
+## 📊 Final Performance
 
-Model Training
+### 🎯 Frame-Level
+- Accuracy: **82%**
+- F1 Score: **0.83**
+- ROC-AUC: **0.87**
 
-ResNet-18 (pretrained on ImageNet)
+### 🎬 Video-Level
+- Accuracy: **84%**
+- F1 Score: **0.84**
+- ROC-AUC: **0.89**
+- PR-AUC: **0.90**
 
-Logistic Regression classification head (final linear layer + Softmax)
-
-WeightedRandomSampler for class balancing
-
-Cosine Annealing Learning Rate Scheduler
-
-Label Smoothing Cross Entropy
-
-Mixed Precision Training (AMP)
-
-Checkpoint saving & resume support
-
-Evaluation
-
-Frame-level evaluation
-
-Video-level evaluation (average logits across frames)
-
-Confusion Matrix
-
-Accuracy, Precision, Recall, F1 Score
-
-ROC-AUC & PR-AUC
-
-Log Loss & Brier Score
-
-Inference
-
-Single image prediction
-
-Single video prediction
-
-Automatic frame sampling
-
-Face detection during inference
-
-Streamlit-based interactive UI
-
-Tech Stack
-Component	Technology
-Programming Language	Python
-Deep Learning Framework	PyTorch
-Model Architecture	ResNet-18
-Computer Vision	OpenCV
-Image Handling	Pillow (PIL)
-Data Handling	Pandas
-Visualization	Matplotlib
-UI	Streamlit
-Hardware	NVIDIA RTX 3050 4GB GPU
+Video-level performance improves reliability by averaging frame predictions.
