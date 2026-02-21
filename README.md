@@ -4,7 +4,7 @@ A complete deep learning pipeline to detect whether an image or video is **REAL*
 
 ---
 
-## 🚀 Project Overview
+## 🚀Project Overview
 
 This project builds an end-to-end deepfake detection system:
 
